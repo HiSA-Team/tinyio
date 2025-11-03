@@ -1,7 +1,7 @@
 #include "uart.h"
 #include <stdint.h>
 
-struct uart_t * global_uart;
+static struct uart_t * global_uart;
 
 void uart_init(uint32_t baseaddr) {
 
@@ -24,7 +24,7 @@ __attribute__((always_inline)) inline uint8_t uart_is_tx_empty() {
 // Send a single character to the UART
 void uart_send_char(uint8_t ch) {
     
-    while (!uart_is_tx_empty(global_uart)) {
+    while (!uart_is_tx_empty()) {
         // If the transmitter is not empty, wait until it becomes empty
     }
 
@@ -36,7 +36,7 @@ void uart_send_char(uint8_t ch) {
 // Waits until a character is received on UART (RX) and returns it.
 uint32_t uart_get_char(){
 
-    while(uart_is_rx_empty(global_uart)){
+    while(uart_is_rx_empty()){
         // Wait until data is available in the RX buffer
     }
     return global_uart->rx;
