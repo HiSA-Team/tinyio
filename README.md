@@ -63,9 +63,15 @@ To compile without debug symbols and `muldiv` extension:
 make DEBUG=N M_EXTENSION=N
 
 ```
-As a sidenote, TinyIO supports both 32 and 64 bits architecture. Default is 32, but to build at 64 bits
+
+TinyIO supports both 32 and 64 bits architecture. Default is 32, but to build at 64 bits
 ```
 make XLEN=64
+```
+
+Additionally, the default toolchain can be overridden and the `-fPIC` flag can be enabled with:
+```
+make RV_PREFIX=<alternative-toolchain> FPIC=Y
 ```
 
 # Contribution
