@@ -5,7 +5,7 @@
 # Libraries available are compiled with riscv32-unknown-elf-
 
 XLEN ?=			32
-RV_PREFIX = 	riscv${XLEN}-unknown-elf-
+RV_PREFIX ?= 	riscv${XLEN}-unknown-elf-
 CC = 			$(RV_PREFIX)gcc
 AR = 			$(RV_PREFIX)ar
 OBJDUMP = 		$(RV_PREFIX)objdump
@@ -18,6 +18,7 @@ F_EXTENSION		?= N
 ARCH = rv${XLEN}i
 
 DEBUG 			?= Y
+FPIC			?= N
 
 ifeq ($(M_EXTENSION), Y)
 ARCH := $(addsuffix m,$(ARCH))
@@ -50,6 +51,10 @@ CFLAGS += 		-c
 
 ifeq ($(DEBUG), Y)
 CFLAGS +=		-g
+endif
+
+ifeq ($(FPIC), Y)
+CFLAGS +=		-fPIC
 endif
 
 # Include
